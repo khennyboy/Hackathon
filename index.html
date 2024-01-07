@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Simple Calculator using html and css</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script
+      src="./javascript/jquery-3.6.1.min.js"
+    ></script>
+    <link rel="stylesheet" href="./css/calc.css">
+    <link rel="stylesheet" href="./css/calc2.css">
+  </head>
+  <body>
+    <div id="calculator">
+      <div id="screen">
+        <input type="text" id="display" placeholder="0" class="screen_color" />
+
+        <input type="text" id="result" readonly />
+      </div>
+      <div id="input_buttons">
+
+              <input type="button" value="C" id="clear" class="green" />
+         
+              <input type="button" value="/" class="green num" />
+           
+              <input type="button" value="*" class="green num" />
+          
+              <button type="button" id="del" class="green">
+                <i class="fas fa-backspace"></i>
+              </button>
+        
+            <input type="button" value="7" class="white num" />
+            <input type="button" value="8" class="white num" />
+            <input type="button" value="9" class="white num" />
+            <input type="button" value="-" class="green num" />
+            
+            <input type="button" value="4" class="white num" />
+            <input type="button" value="5" class="white num" />
+            <input type="button" value="6" class="white num" />
+            <input type="button" value="+" class="green num" />
+       
+            <input type="button" value="1" class="white num" />
+            <input type="button" value="2" class="white num" />
+            <input type="button" value="3" class="white num" />
+
+            <input type="button" value="&equals;" id="equal" class="green" />
+            <input type="button" value="0" class="white num" />
+            <input type="button" value="%" class="white num" />
+            <input type="button" value="." class="white num" />
+    
+        </table>
+      </div>
+    </div>
+
+    <script>
+      $(".num").click(function () {
+        if ($("#result").hasClass("equal")) {
+          $("#result").removeClass("equal");
+          $("#result").val("");
+        }
+        if ($("#display").hasClass("equal2")) {
+          $("#display").removeClass("equal2");
+          $("#display").val("");
+        }
+        $("#display").val($("#display").val() + this.value);
+        $("#result").val(eval($("#display").val()));
+       
+      });
+      $("#equal").click(function () {
+        $("#result").addClass("equal");
+        $("#display").addClass("equal2");
+        $("#display").attr("placeholder", "");
+      });
+
+      $("#clear").click(function () {
+        if ($("#display").hasClass("equal2")) {
+          $("#display").removeClass("equal2");
+        }
+        if ($("#result").hasClass("equal")) {
+          $("#result").removeClass("equal");
+        }
+        $("#result").val("");
+        $("#display").val("");
+        $("#display").attr("placeholder", "0");
+      });
+
+      $("#del").click(function () {
+        var x = $("#display");
+        var y = $("#result");
+        if (x.hasClass("equal2") && y.hasClass("equal")) {
+          $("#display").removeClass("equal2");
+          $("#result").removeClass("equal");
+        } else {
+          $("#display").val($("#display").val().slice(0, -1));
+        }
+        var value = x.val();
+        if (value !== "0") {
+          $("#result").val(eval($("#display").val()));
+        } else {
+          $("#result").val("");
+        }
+      });
+    </script>
+  </body>
+</html>
