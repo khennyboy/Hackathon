@@ -18,7 +18,7 @@
   <body>
     <div id="calculator">
       <div id="screen">
-        <input type="text" id="display" placeholder="0" class="screen_color" />
+        <input type="text" id="display" placeholder="0" readonly />
 
         <input type="text" id="result" readonly />
       </div>
@@ -53,7 +53,6 @@
             <input type="button" value="%" class="white num" />
             <input type="button" value="." class="white num" />
     
-        </table>
       </div>
     </div>
 
@@ -67,9 +66,15 @@
           $("#display").removeClass("equal2");
           $("#display").val("");
         }
+
         $("#display").val($("#display").val() + this.value);
-        $("#result").val(eval($("#display").val()));
-       
+        let x = $('#display').val()
+        console.log(typeof x)
+        while(x.toString().charAt(0)==0){
+          x = x.substring(1)
+        }
+        $("#display").val(x);
+        $("#result").val(eval($('#display').val()));
       });
       $("#equal").click(function () {
         $("#result").addClass("equal");

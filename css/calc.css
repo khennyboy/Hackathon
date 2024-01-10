@@ -27,9 +27,7 @@
     padding-right: 50px;
     overflow: hidden;
   }
-  #input_buttons table {
-    border-collapse: collapse;
-  }
+
   #calculator #input_buttons {
     height: 60%;
     width: 100%;
