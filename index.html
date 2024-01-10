@@ -58,24 +58,49 @@
 
     <script>
       $(".num").click(function () {
-        if ($("#result").hasClass("equal")) {
-          $("#result").removeClass("equal");
-          $("#result").val("");
-        }
-        if ($("#display").hasClass("equal2")) {
-          $("#display").removeClass("equal2");
-          $("#display").val("");
-        }
+  if ($("#result").hasClass("equal")) {
+    $("#result").removeClass("equal");
+    $("#result").val("");
+  }
+  if ($("#display").hasClass("equal2")) {
+    $("#display").removeClass("equal2");
+    $("#display").val("");
+  }
 
-        $("#display").val($("#display").val() + this.value);
-        let x = $('#display').val()
-        console.log(typeof x)
-        while(x.toString().charAt(0)==0){
-          x = x.substring(1)
-        }
-        $("#display").val(x);
-        $("#result").val(eval($('#display').val()));
-      });
+  let displayValue = $("#display").val();
+  let clickedValue = this.value;
+
+  // Check if the displayed value is '0', replace it with the clicked value
+  if (displayValue === "0") {
+    $("#display").val(clickedValue);
+  } else {
+    $("#display").val(displayValue + clickedValue);
+  }
+
+  let expression = $("#display").val();
+  // Evaluate the expression and display the result
+  $("#result").val(eval(expression));
+});
+
+      // $(".num").click(function () {
+      //   if ($("#result").hasClass("equal")) {
+      //     $("#result").removeClass("equal");
+      //     $("#result").val("");
+      //   }
+      //   if ($("#display").hasClass("equal2")) {
+      //     $("#display").removeClass("equal2");
+      //     $("#display").val("");
+      //   }
+
+      //   $("#display").val($("#display").val() + this.value);
+      //   let x = $('#display').val()
+      //   console.log(typeof x)
+      //   while(x.toString().charAt(0)==0){
+      //     x = x.substring(1)
+      //   }
+      //   $("#display").val(x);
+      //   $("#result").val(eval($('#display').val()));
+      // });
       $("#equal").click(function () {
         $("#result").addClass("equal");
         $("#display").addClass("equal2");
